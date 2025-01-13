@@ -1,0 +1,1 @@
+web: gunicorn kpfc.wsgi --log-file -

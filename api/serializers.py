@@ -53,7 +53,8 @@ class ProductSerializer(serializers.ModelSerializer):
             'image_two',
             'image_three',
         )
-        category = CategorySerializer
+        # category = CategorySerializer
+
     def validate_price(self, value):
         if value <=0:
             raise serializers.ValidationError(
