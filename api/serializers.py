@@ -44,7 +44,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
-            # 'category_name',
+            'id',
             'category',
             'name',
             'description', 
@@ -67,6 +67,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderItemSerializer(serializers.ModelSerializer):
     # product = ProductSerializer()
     product_name = serializers.CharField(source='product.name')
+    main_image = serializers.ImageField(source='product.main_image')
     product_price = serializers.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -76,6 +77,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = (
             'product_name', 
+            'main_image',
             'product_price', 
             'quantity',
             'item_subtotal'
@@ -84,11 +86,12 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
     total_price = serializers.SerializerMethodField(method_name='total')
-
+    user = serializers.StringRelatedField()
+    
     def total(self, obj):
         order_items = obj.items.all()
         return sum(order_item.item_subtotal for order_item in order_items)
-
+         
     class Meta:
         model = Order
         fields = (
