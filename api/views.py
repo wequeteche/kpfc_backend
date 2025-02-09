@@ -12,6 +12,10 @@ from rest_framework.permissions import (
     )
 from rest_framework.views import APIView 
 from api.filters import ProductFilter
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+
+
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
@@ -196,7 +200,8 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filterset_class = ProductFilter
-    
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['name', 'description']
     
     def get_permissions(self):
         self.permission_classes = [AllowAny]

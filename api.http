@@ -43,3 +43,6 @@ Content-Type: application/json
 {
     "email" : "wequeteche@gmail.com"
 }
+
+###
+GET http://localhost:8000/api/products?search=gypsum HTTP/1.1

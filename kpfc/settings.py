@@ -29,9 +29,12 @@ SECRET_KEY = "django-insecure-1!)c37v_+)5vn*g=loud0(ji2t-#2xt=fp0!f(qzid@rrpz)c!
 DEBUG = True
 # DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(' ') if not DEBUG else []
-
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://homeebay.com',
+]
 
 # Application definition
 
