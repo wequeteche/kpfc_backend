@@ -1,5 +1,6 @@
 from django.contrib import admin
 from api.models import Order, OrderItem, User, Product, Category, Service
+from djangoql.admin import DjangoQLSearchMixin
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
@@ -15,7 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = [
     'name',
     # 'slug',

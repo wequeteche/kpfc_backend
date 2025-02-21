@@ -61,6 +61,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
+    discount = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
     main_image = models.ImageField(upload_to='products', blank=True, null=True)
@@ -81,7 +82,25 @@ class Product(models.Model):
         return self.stock >0
     def __str__(self):
         return self.name
-    
+
+class ProductVariant(models.Model):
+    product = models.ForeignKey(Product,
+    on_delete=models.CASCADE,
+    related_name='variants')
+    attribute_name = models.CharField(max_length=255, null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
+    stock = models.PositiveIntegerField(default=1)
+    created = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['attribute_name']
+        indexes = [
+            models.Index(fields=['id']),
+            models.Index(fields=['attribute_name']),
+            models.Index(fields=['-created']),
+            ]
+
 class Order(models.Model):
     class StatusChoices(models.TextChoices):
         PENDING = 'Pending'
