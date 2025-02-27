@@ -31,7 +31,8 @@ def initiate_stk_push(customer_mpesa_number, total_amount):
             # amount = total_amount
             # phone = customer_mpesa_number
             passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
-            business_short_code = '7661701'
+            # business_short_code = '7661701'
+            business_short_code = '174379'
             process_request_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
             callback_url = 'https://mydomain.com/callback'
             timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -78,5 +79,5 @@ def initiate_stk_push(customer_mpesa_number, total_amount):
     except:
         return {'error': 'Failed to retrieve access token.'}
     
-print(initiate_stk_push('254768595031', '1'))
+print(initiate_stk_push('254759510388', '1'))
 

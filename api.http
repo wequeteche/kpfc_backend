@@ -1,11 +1,36 @@
-Get http://localhost:8000/api/orders/  HTTP/1.1
+Get http://localhost:8000/api/products/?ordering=name  HTTP/1.1
+# Content-Type: application/json
+# Authorization: Bearer 
+
+###
+POST http://localhost:8000/api/orders/  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNDc4NTE3LCJpYXQiOjE3NDA0Njc3MTcsImp0aSI6IjliNDNkYjA2MzAyYTQzZWQ4NjhlYjUxMjdlZjE4NDZhIiwidXNlcl9pZCI6Mn0.9_uU9XSMq35d4zitfEjWshOCvDsMiPqqKuuJgT2vEfU 
+
+{
+    "status": "Pending",
+    "user": "wequeteche@gmail.com",
+    "items": [
+        {
+            "product_name": "Gypsum Screw 3.5*32[200]",
+            "product_price": "300.00",
+            "quantity": 2,
+            "main_image": "http://localhost:8000/media/products/gypsum-screw.jpeg"
+        },
+        {
+            "product_name": "Pegler Foot Valve 1'",
+            "product_price": "700.00",
+            "quantity": 1,
+            "main_image": "http://localhost:8000/media/products/Pegler_Foot_Valve_1.jpg"
+        }
+    ]
+}
+
 
 ###
 Get http://localhost:8000/api/user-orders/  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2ODA5ODczLCJpYXQiOjE3MzY3OTkwNzMsImp0aSI6IjU4Y2RkNmI0ZmQ3YjQzZGJiYTI5MzU3MjJmMGI2ODk1IiwidXNlcl9pZCI6Mn0.0tBKUukvS0Wf76wgLMyYG64juJLpeccTjcbJQFiap_w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNDcwODU2LCJpYXQiOjE3NDA0NjAwNTYsImp0aSI6IjBmZmRhZjgzMDRmODRmYjZiZjQ1NmU0MGU2ZTUxMTEzIiwidXNlcl9pZCI6Mn0.JGmgudnnkdDXpz47PrrT5jOmMPO1piBaHaaYNuy72BQ
 
 ###
 POST http://localhost:8000/api/token/ HTTP/1.1
@@ -21,8 +46,8 @@ POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "hardwarekpfc@gmail.com",
-    "password": "kpfcmuinamu#01"
+    "email": "brian@gmail.com",
+    "password": "test"
 }
 
 ###
@@ -45,4 +70,45 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8000/api/products?search=gypsum HTTP/1.1
+GET http://localhost:8000/api/orders/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNjYyMTA4LCJpYXQiOjE3NDA2NTEzMDgsImp0aSI6ImMwNzlhOWQ4NjMyZjRmNjNhOGEwNjhiZDc3NTY5Y2VmIiwidXNlcl9pZCI6Mn0.MznzWAg1dhuI1Tluw8JMkz9rOvihoHmbPXP8eeK2m-Q
+
+###
+POST http://localhost:8000/api/orders/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNjYyMTA4LCJpYXQiOjE3NDA2NTEzMDgsImp0aSI6ImMwNzlhOWQ4NjMyZjRmNjNhOGEwNjhiZDc3NTY5Y2VmIiwidXNlcl9pZCI6Mn0.MznzWAg1dhuI1Tluw8JMkz9rOvihoHmbPXP8eeK2m-Q
+
+{
+    "status": "Pending",
+    "items": [
+        {
+            "product": 4,
+            "quantity": 10
+        },
+        {
+            "product": 3,
+            "quantity": 10
+        }
+    ]
+} 
+###
+PUT http://localhost:8000/api/orders/38aa8d5e-2b07-4b46-a99e-17a24aafd020/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNjYyMTA4LCJpYXQiOjE3NDA2NTEzMDgsImp0aSI6ImMwNzlhOWQ4NjMyZjRmNjNhOGEwNjhiZDc3NTY5Y2VmIiwidXNlcl9pZCI6Mn0.MznzWAg1dhuI1Tluw8JMkz9rOvihoHmbPXP8eeK2m-Q
+
+{
+    "status": "Confirmed"
+} 
+###
+GET http://localhost:8000/api/orders/38aa8d5e-2b07-4b46-a99e-17a24aafd020/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNjYyMTA4LCJpYXQiOjE3NDA2NTEzMDgsImp0aSI6ImMwNzlhOWQ4NjMyZjRmNjNhOGEwNjhiZDc3NTY5Y2VmIiwidXNlcl9pZCI6Mn0.MznzWAg1dhuI1Tluw8JMkz9rOvihoHmbPXP8eeK2m-Q
+
+
+###
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "wequeteche@gmail.com",
+    "password": "kpfcweque#01"
+}
